@@ -30,7 +30,7 @@ jQuery.fn.extend({
 
                 $.each(images, function(i ,item){
                     html += '<div class="imageWrapper ' + (i == 0 ? "active" : "nextImage") + '" data-id="' + (i + 1) + '">';
-                        html += '<img class="img-responsive" src="' + item.src + '" alt="' + item.alt + '" />';
+                        html += '<img class="img-responsive img-fluid" src="' + item.src + '" alt="' + item.alt + '" />';
                     html += '</div>';
                 });
 

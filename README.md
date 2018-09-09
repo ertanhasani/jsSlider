@@ -4,7 +4,7 @@ jsSlider is a jQuery Slider Plugin that works with Bootstrap (v.3).
 Give it a height in pixels (number) and it will center all images either if they are smaller or not.
 
 # How to use it
-> In order to use it, you should already have imported `Bootstrap v3 CSS` and `jQuery` in your project.
+> In order to use it, you should already have imported `Bootstrap v3 CSS` or `Bootstrap v4 CSS` and `jQuery` in your project.
 
 > TESTED IN GOOGLE CHROME, MOZILLA and MICROSOFT EDGE with lastet versions!
 
