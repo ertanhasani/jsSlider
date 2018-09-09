@@ -1,10 +1,17 @@
 jQuery.fn.extend({
-    jsSlider: function(images, height) {
-
+    jsSlider: function(images, height = 0) {
+        
+        var desiredHeight = height;
         var elm = $(this);
 
-        addCss();
         $.when(addElement()).then(function(){
+            addMargin();
+        }).then(function(){
+            addCss();
+        })
+        .then(function(){
+            addElement();
+        }).then(function(){
             addMargin();
         });
         
@@ -38,13 +45,25 @@ jQuery.fn.extend({
         }
 
         function addMargin(){
+            if(height == 0)
+            {
+                var allImages = $(elm).find('.imagesWrapper img');
+
+                allImages.each(function (i, item) {
+                    if(desiredHeight < item.height)
+                    {
+                        desiredHeight = item.height;
+                    }
+                });
+            }
+
              //adding margin to position in center
             var allImages = $(elm).find('.imagesWrapper img');
 
             allImages.each(function (i, item) {
-                var imageHeight = item.height;
-                if (imageHeight < height) {
-                    $(item).css('margin-top', parseFloat((height - imageHeight) / 2));
+                var imageHeight = item.height;  
+                if (imageHeight < desiredHeight) {
+                    $(item).css('margin-top', parseFloat((desiredHeight - imageHeight) / 2));
                 }
             });
             //end adding margin to position in center
@@ -55,20 +74,20 @@ jQuery.fn.extend({
             //add CSS
             var css = '<style> \n' + 
             '.imagesWrapper .imageWrapper img { \n\n' +
-                'max-height: \n' + height + 'px;\n\n' +
+                'max-height: \n' + desiredHeight + 'px;\n\n' +
                 'display: inline;\n\n' +
             '}\n' +
         
             '.imagesWrapper {\n' +
                 'position: relative;\n' +
                 'overflow: hidden;\n' +
-                'height: \n' + height + 'px;\n' +
+                'height: \n' + desiredHeight + 'px;\n' +
             '}\n' +
         
             '.imagesWrapper .imageWrapper {\n' +
                 'position: absolute;\n' +
                 'transition: 1.5s all ease-in-out;\n' +
-                'width: -webkit-fill-available;\n' +
+                'width: 100%;\n' +
             '}\n' +
 
             '.imageWrapper.previousImage {\n' +
@@ -88,7 +107,7 @@ jQuery.fn.extend({
         
             '.goToNextImage {\n' +
             'position: absolute;\n' +
-                'height: \n' + height + 'px;\n' +
+                'height: \n' + desiredHeight + 'px;\n' +
                 'transform: translateY(42%);\n' +
                 'right: 0;\n' +
                 'z-index: 1;\n' +
@@ -96,7 +115,7 @@ jQuery.fn.extend({
         
             '.goToPreviousImage {\n' +
                 'position: absolute;\n' +
-                'height: \n' + height + 'px;\n' +
+                'height: \n' + desiredHeight + 'px;\n' +
                 'transform: translateY(42%);\n' +
                 'left: 0;\n' +
                 'z-index: 1;\n' +

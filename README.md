@@ -6,7 +6,7 @@ Give it a height in pixels (number) and it will center all images either if they
 # How to use it
 > In order to use it, you should already have imported `Bootstrap v3 CSS` and `jQuery` in your project.
 
-> CURRENTLY SUPPORTED ONLY FOR GOOGLE CHROME!
+> TESTED IN GOOGLE CHROME, MOZILLA and MICROSOFT EDGE with lastet versions!
 
 Add a `div` inside your with an `id` or a `particular class`. Ex. 
 ```
@@ -28,6 +28,11 @@ Then just call `jsSlider` function to that `div`. `jsSlider` function takes two 
 ```
 $('#mySlider').jsSlider(images, 500);
 ```
+Or you can use it by just giving images object as parameter, and the height will be taken from the largest image.
+```
+$('#mySlider').jsSlider(images);
+```
+
 
 And then it will look like this:
 ![Home Page](https://image.ibb.co/fv45up/image1.jpg)
