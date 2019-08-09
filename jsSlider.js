@@ -5,14 +5,10 @@ jQuery.fn.extend({
         var elm = $(this);
 
         $.when(addElement()).then(function(){
-            addMargin();
-        }).then(function(){
             addCss();
         })
         .then(function(){
             addElement();
-        }).then(function(){
-            addMargin();
         });
         
 
@@ -44,31 +40,6 @@ jQuery.fn.extend({
             //end add images to element
         }
 
-        function addMargin(){
-            if(height == 0)
-            {
-                var allImages = $(elm).find('.imagesWrapper img');
-
-                allImages.each(function (i, item) {
-                    if(desiredHeight < item.height)
-                    {
-                        desiredHeight = item.height;
-                    }
-                });
-            }
-
-             //adding margin to position in center
-            var allImages = $(elm).find('.imagesWrapper img');
-
-            allImages.each(function (i, item) {
-                var imageHeight = item.height;  
-                if (imageHeight < desiredHeight) {
-                    $(item).css('margin-top', parseFloat((desiredHeight - imageHeight) / 2));
-                }
-            });
-            //end adding margin to position in center
-        }
-
         function addCss()
         {
             //add CSS
@@ -88,6 +59,10 @@ jQuery.fn.extend({
                 'position: absolute;\n' +
                 'transition: 1.5s all ease-in-out;\n' +
                 'width: 100%;\n' +
+                'height: \n' + desiredHeight + 'px;\n' +
+                'display: flex;\n' +
+                'justify-content: center;\n' +
+                'align-items: center;\n' +
             '}\n' +
 
             '.imageWrapper.previousImage {\n' +
